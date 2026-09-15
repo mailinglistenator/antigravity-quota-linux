@@ -29,13 +29,16 @@ def check_already_running():
             stderr=subprocess.DEVNULL
         )
         for line in out.splitlines():
-            if WM_CLASS in line or "antigravity-quota" in line.lower():
-                print("Antigravity Quota is already running. Focusing existing window...")
-                subprocess.call(
-                    ["wmctrl", "-x", "-a", WM_CLASS],
-                    env={**os.environ, "DISPLAY": os.environ.get("DISPLAY", ":0")}
-                )
-                return True
+            parts = line.split(None, 4)
+            if len(parts) >= 3:
+                win_class = parts[2].lower()
+                if WM_CLASS.lower() in win_class:
+                    print("Antigravity Quota is already running. Focusing existing window...")
+                    subprocess.call(
+                        ["wmctrl", "-x", "-a", WM_CLASS],
+                        env={**os.environ, "DISPLAY": os.environ.get("DISPLAY", ":0")}
+                    )
+                    return True
     except Exception:
         pass
     return False
