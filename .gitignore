@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Application and User Credentials (CRITICAL - DO NOT COMMIT)
+accounts.json
+*.tmp
+cache.json
+*.log
+.config/
+
+# OS / Editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Antigravity Quota
+Comment=Monitor Antigravity 5-hour sprint and weekly quotas
+Exec=antigravity-quota
+Icon=antigravity-quota
+Terminal=false
+Categories=Development;Utility;
+StartupNotify=true
+StartupWMClass=AntigravityQuota

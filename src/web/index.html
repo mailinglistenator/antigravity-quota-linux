@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antigravity Quota Monitor</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="logo-group">
+            <img src="icon.png" alt="Antigravity Quota" class="logo-img" />
+            <div>
+                <h1 class="app-title">Antigravity Quota Monitor</h1>
+                <p class="app-subtitle">Multi-Account Sprint (5h) &amp; Weekly Limits</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary" id="btn-refresh" onclick="refreshData()">
+                <span class="btn-icon">↻</span> Refresh
+            </button>
+            <button class="btn btn-primary" id="btn-add-account" onclick="openAddModal()">
+                <span class="btn-icon">+</span> Add Account
+            </button>
+        </div>
+    </header>
+
+    <main class="content-container">
+        <div id="accounts-grid" class="accounts-grid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading accounts quota...</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Account Modal -->
+    <div id="add-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Add Google Account</h3>
+                <button class="close-btn" onclick="closeAddModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Connect an additional Google account to track its Antigravity 5-hour and weekly limits.
+                </p>
+                <div class="form-group">
+                    <label for="acc-name">Account Label / Friendly Name</label>
+                    <input type="text" id="acc-name" placeholder="Leave blank to use your Gmail address" />
+                </div>
+                <div id="auth-status" class="auth-status-box hidden"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                <button class="btn btn-primary" id="btn-submit-auth" onclick="startOAuthConnect()">Connect with Google</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rename Session Modal -->
+    <div id="rename-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Rename Session</h3>
+                <button class="close-btn" onclick="closeRenameModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="modal-desc">
+                    Change the display name of this account or session.
+                </p>
+                <div class="form-group">
+                    <label for="rename-input">New Session Name</label>
+                    <input type="text" id="rename-input" placeholder="e.g. Primary Account, Personal, Work" />
+                    <input type="hidden" id="rename-old-id" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeRenameModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="submitRename()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
